@@ -1,0 +1,21 @@
+# action.yml
+name: 'Wait For It'
+description: 'Waits for a service to be running on a specified port'
+inputs:
+  host:
+    description: 'hostname'
+    required: true
+  port:
+    description: 'port'
+    required: true
+  timeout:
+    description: 'Time in seconds to wait for service, zero for no timeout'
+    required: true
+outputs:
+  exit_code: # id of output
+    description: 'exit code of the command'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.host }}:${{ inputs.port }} --timeout ${{ inputs.timeout 
